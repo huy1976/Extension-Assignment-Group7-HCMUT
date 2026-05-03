@@ -92,14 +92,34 @@ int main(void) {
 				double a = input_value("A:", 2); if (isnan(a)) { app = 0; oled_clear(); continue; }
 				double b = input_value("B:", 3); if (isnan(b)) { app = 0; oled_clear(); continue; }
 				double c = input_value("C:", 4); if (isnan(c)) { app = 0; oled_clear(); continue; }
-				if (a == 0) { oled_print("Not PT bac 2!", 0, 6); }
+				
+				char s1[16], s2[16];
+				oled_clear_line(6);
+
+				if (a == 0) {
+					oled_print("A=0 -> PT Bac 1", 0, 5);
+					if (b == 0) {
+						if (c == 0) oled_print("VO SO NGHIEM !", 0, 6);
+						else oled_print("VO NGHIEM !", 0, 6);
+						} else {
+						dtostrf(-c/b, 6, 2, s1);
+						oled_print("x =", 0, 6); oled_print(s1, 25, 6);
+					}
+				}
 				else {
-					double d = b*b - 4*a*c; char s1[16], s2[16];
-					if (d < 0) oled_print("VO NGHIEM !", 0, 6);
-					else if (d == 0) { dtostrf(-b/(2*a), 6, 2, s1); oled_print("x=", 0, 6); oled_print(s1, 20, 6); }
+					double d = b*b - 4*a*c;
+					if (d < 0) {
+						oled_print("VO NGHIEM !", 0, 6);
+					}
+					else if (d == 0) {
+						dtostrf(-b/(2*a), 6, 2, s1);
+						oled_print("x1=x2=", 0, 6); oled_print(s1, 40, 6);
+					}
 					else {
-						dtostrf((-b+sqrt(d))/(2*a), 5, 2, s1); dtostrf((-b-sqrt(d))/(2*a), 5, 2, s2);
-						oled_print("x1:", 0, 6); oled_print(s1, 20, 6); oled_print("x2:", 65, 6); oled_print(s2, 85, 6);
+						dtostrf((-b + sqrt(d))/(2*a), 5, 2, s1);
+						dtostrf((-b - sqrt(d))/(2*a), 5, 2, s2);
+						oled_print("x1:", 0, 6); oled_print(s1, 20, 6);
+						oled_print("x2:", 65, 6); oled_print(s2, 85, 6);
 					}
 				}
 				oled_print("PRESS AC TO BACK", 0, 7);
