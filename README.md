@@ -24,26 +24,24 @@ The project support two types of displays:
 
 ## How to Use
 
-### 1. Simulation in Proteus
+### 1. Build Source Code
+1.  Open the project in **Microchip Studio**.
+2.  Check the source code in `LCD_CODE` or `OLED_CODE` folders.
+3.  Press **F7** (or go to **Build > Build Solution**) to compile the code.
+4.  Ensure the output window shows **"Build succeeded"** with no errors. This process generates the `.hex` file needed for the next steps.
+
+### 2. Simulation in Proteus
 1.  Open the `.pdsprj` file (e.g., `OLED_BTLVXL.pdsprj`) using **Proteus Professional**.
-2.  Double-click on the **ATmega324P** microcontroller.
-3.  In the "Program File" field, browse and select the `.hex` file (found in the `Debug` or `Release` folder of your Microchip Studio project).
-4.  Press the **Play** button to start the simulation.
+2.  Double-click on the **ATmega324P** microcontroller in the schematic.
+3.  In the **"Program File"** field, browse and select the `.hex` file you just built (usually located in the `Debug` or `Release` folder).
+4.  Press the **Play** button at the bottom left to start the simulation.
 
-### 2. Operating the Calculator
-*   **Basic Calculations:** Use the 4x4 Keypad to input numbers and operators (+, -, *, /).
-*   **Parentheses:** Use the designated keys to wrap expressions for correct order of operations.
+### 3. Operating the Calculator
+Once the simulation is running:
+*   **Basic Calculations:** Use the keypad to input numbers and basic operators (+, -, *, /).
 *   **Scientific Functions:** 
-    *   Press the mode/function key to access **Sin, Cos, Tan**, and **Logarithms**.
-    *   Results will be displayed on the **OLED/LCD** screen with floating-point precision.
+    *   Access **Sin, Cos, Tan**, and **Logarithms** via designated function keys.
+    *   Results are displayed with floating-point precision on the **OLED/LCD**.
 *   **Quadratic Equation Solver:** 
-    *   Select the Equation mode.
-    *   Input coefficients **a, b, and c** when prompted.
-    *   The system will calculate the discriminant ($\Delta$) and display the roots ($x_1, x_2$).
-
-### 3. Hardware Deployment
-1.  Open the source code in **Microchip Studio**.
-2.  Build the project (**F7**) to ensure there are no errors.
-3.  Connect your **ATmega324P kit** to the computer via an ISP programmer (e.g., USBASP).
-4.  Flash the `.hex` file to the chip.
-5.  Ensure the **OLED/LCD** and **Keypad** are wired correctly according to the pin definitions in the source code.
+    *   Enter the Equation mode.
+    *   Input coefficients **a, b, and c** when prompted to find the roots ($x_1, x_2$).
